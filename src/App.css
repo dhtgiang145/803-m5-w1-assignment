@@ -14,12 +14,6 @@
 .left h1 {float:left; padding-left: 2rem;}
 .right {padding-top: 3rem;}
 .right h5 {float:right; padding-right: 2rem;}
-.Products {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  position: relative;
-}
 .listItem {
   float: left;
 }
@@ -51,4 +45,7 @@ img {
   left: 40%;
   background-color: grey;
   opacity: 0.5;
+}
+.card-text form {
+  width: 20rem;
 }

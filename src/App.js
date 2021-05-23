@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ProductList from "./displayProducts.js";
 import Nav from "./navbar.js";
-import Cart from "./Cart.js"
 import "./App.css";
 import { products } from "./products.js";
 
@@ -16,20 +13,30 @@ class App extends Component {
       selected: null,
     };
   }
+  increaseQty = (addvalue) => {
+    if (addvalue.value < 10) {
+      const updatedValue = addvalue.value++;
+      this.setState({ updatedValue });
+    }
+  };
+  decreaseQty = (decvalue) => {
+    if (decvalue.value > 0) {
+      const updatedValue = decvalue.value--;
+      this.setState({ updatedValue });
+    }
+  };
+
   render() {
     return (
       <div className="App container">
-        <Router>
-          <Nav />
-          <Switch>
-            <Route exact path="/">
-              <ProductList products={this.state.products} />
-            </Route>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
-          </Switch>
-        </Router>
+          <Nav
+            totalQty  = {this.state.data
+              .map((product) => product.value)
+              .reduce((acc, curr) => acc + curr, 0)}
+            products={this.state.data}
+            increaseQty={this.increaseQty}
+            decreaseQty={this.decreaseQty}
+          />
       </div>
     );
   }

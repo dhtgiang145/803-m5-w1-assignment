@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ListGroup, ListGroupItem, ModalBody } from "reactstrap";
 import { Modal } from "react-bootstrap";
-import { products } from "./products.js";
 import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
 
 export default function ProductList(props) {
+  const { products = [] } = props;
   const [show, setShow] = useState(false);
   const [showImg, setShowImg] = useState({});
   const handleClose = () => setShow(false);
@@ -14,9 +14,10 @@ export default function ProductList(props) {
     setShow(true);
     setShowImg(product);
   };
+
   const listItems = products.map((product) => {
     return (
-      <ListGroupItem key={product.id} className="Products">
+      <ListGroupItem key={product.id} className="d-flex flex-row align-items-center">
         <section className="listItem col-5">
           <h4>{product.desc}</h4>
           <img
@@ -43,10 +44,10 @@ export default function ProductList(props) {
         </Modal>
         <section className="listQty col-7">
           <div className="m-2">
-            <button>
+            <button onClick={() => props.decreaseQty(product)}>
               <FontAwesomeIcon icon={faMinusCircle} />
             </button>
-            <button>
+            <button onClick={() => props.increaseQty(product)}>
               <FontAwesomeIcon icon={faPlusCircle} />
             </button>
           </div>
