@@ -17,9 +17,15 @@ export default function ProductList(props) {
 
   const listItems = products.map((product) => {
     return (
-      <ListGroupItem key={product.id} className="d-flex flex-row align-items-center">
+      <ListGroupItem
+        key={product.id}
+        className="d-flex flex-row align-items-center"
+      >
         <section className="listItem col-5">
-          <h4>{product.desc}</h4>
+          <h5>
+            {product.desc}{" "}
+            <strong className="text-danger">${product.price}</strong>
+          </h5>
           <img
             src={product.image}
             alt={product.desc}
@@ -59,5 +65,15 @@ export default function ProductList(props) {
       </ListGroupItem>
     );
   });
-  return <ListGroup>{listItems}</ListGroup>;
+  return (
+    <div>
+      <label>Sort Price By:</label>
+      <select onChange={(e) => props.onSort(listItems, e.target.value)}>
+        <option value="def">Normal</option>
+        <option value="desc">Lowest</option>
+        <option value="asc">Highest</option>
+      </select>
+      <ListGroup>{listItems}</ListGroup>
+    </div>
+  );
 }

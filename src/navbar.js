@@ -35,6 +35,9 @@ export default function Nav(props) {
             products={props.products}
             increaseQty={props.increaseQty}
             decreaseQty={props.decreaseQty}
+            sortType={props.sortType}
+            listNum={props.listNum}
+            onSort={props.onSort}
           />
         </Route>
         <Route exact path="/cart">
