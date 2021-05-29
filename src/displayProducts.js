@@ -68,10 +68,10 @@ export default function ProductList(props) {
   return (
     <div>
       <label>Sort Price By:</label>
-      <select onChange={(e) => props.onSort(listItems, e.target.value)}>
+      <select onChange={(e) => props.onSort(products, e.target.value)}>
         <option value="def">Normal</option>
-        <option value="desc">Lowest</option>
-        <option value="asc">Highest</option>
+        <option value="asc">Lowest</option>
+        <option value="desc">Highest</option>
       </select>
       <ListGroup>{listItems}</ListGroup>
     </div>
